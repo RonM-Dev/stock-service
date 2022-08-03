@@ -25,6 +25,11 @@ public class StockResource {
     @Autowired
     RestTemplate restTemplate;
 
+    /**
+     * Get a List of all the current quotes for a user from the Yahoo Finance API
+     * @param username
+     * @return A List of all the stock information for a given user from the Yahoo Finance API
+     */
     @GetMapping("/{username}")
     public List<Stock> getStockQuote(@PathVariable("username") String username) {
         ResponseEntity<List<String>> quoteResponse =
@@ -40,6 +45,11 @@ public class StockResource {
 
     }
 
+    /**
+     * Private utility method, introduce for better readability
+     * @param quote
+     * @return Stock data from the Yahoo Finance API
+     */
     private Stock getStockPrice(String quote) {
         try {
             return YahooFinance.get(quote);
